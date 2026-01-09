@@ -1,8 +1,8 @@
 package com.example.calculator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class Calculator {
 //    TODO: 멤버 변수/필드가 꼭 필요한 게 아닌지 먼저 생각해보기
@@ -19,14 +19,18 @@ public class Calculator {
 //    TODO:
 //      List<Integer> list = new ArrayList<>();
 //      컬렉션 또한 앞에 접근 제어자를 붙일 수 있다!
-    public static List<Integer> list = new ArrayList<>();
+    private static List<Integer> list = new ArrayList<>();
 
-    public void setList(List<Integer> list) {
-        Calculator.list = list;
+    public static void setList(int result) {
+        list.add(result);
     }
 
-    public List<Integer> getList() {
-        return list;
+    public String getList() {
+        int[] arr = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            arr[i] = list.get(i);
+        }
+        return Arrays.toString(arr);
     }
 
 //    삭제되는 원소를 돌려주기(맨 앞에 있는 원소)
@@ -58,7 +62,7 @@ public class Calculator {
                 throw new IllegalArgumentException("잘못된 연산자가 입력되었습니다.");
         }
 
-        list.add(result);
+//        list.add(result);
         return result;
     }
 }
