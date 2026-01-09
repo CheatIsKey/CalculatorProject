@@ -11,7 +11,7 @@ public class Main {
         Calculator calculator = new Calculator();
         String input = "";
 
-        //TODO: 최초 1회는 실행되고 그 이후에 반복할지 여부를 판단하기 위해, do-while() 반복문 사용하기
+//        TODO: 최초 1회는 실행되고 그 이후에 반복할지 여부를 판단하기 위해, do-while() 반복문 사용하기
         do {
             int result = 0;
 
@@ -41,8 +41,12 @@ public class Main {
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료, delete 입력 시 처음 결과 삭제)");
             input = scan.next();
+//            TODO:
+//             삭제된 원소를 출력하고 남아있는 리스트 목록 보여주기
             if (input.equalsIgnoreCase("delete")) {
-                calculator.removeResult();
+                int removed = calculator.removeResult();
+                System.out.println("삭제된 원소: " + removed);
+                System.out.println("현재 저장된 계산 결과 목록: " + calculator.getList());
             }
         } while (!input.equalsIgnoreCase("exit"));
 

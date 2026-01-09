@@ -29,8 +29,9 @@ public class Calculator {
         return list;
     }
 
-    public void removeResult() {
-        list.remove(0);
+//    삭제되는 원소를 돌려주기(맨 앞에 있는 원소)
+    public int removeResult() {
+        return list.remove(0);
     }
 
     public int calculate(int a, int b, char operator) {
