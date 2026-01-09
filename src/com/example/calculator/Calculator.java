@@ -1,7 +1,6 @@
 package com.example.calculator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Calculator {
@@ -19,23 +18,31 @@ public class Calculator {
 //    TODO:
 //      List<Integer> list = new ArrayList<>();
 //      컬렉션 또한 앞에 접근 제어자를 붙일 수 있다!
-    private static List<Integer> list = new ArrayList<>();
+    private List<Integer> list = new ArrayList<>();
 
-    public static void setList(int result) {
+    public void setList(int result) {
         list.add(result);
     }
 
     public String getList() {
-        int[] arr = new int[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            arr[i] = list.get(i);
-        }
-        return Arrays.toString(arr);
+//        TODO:
+//          컬렉션에 toString() 메서드를 쓰면 내부 요소들이 출력된다.
+//        int[] arr = new int[list.size()];
+//        for (int i = 0; i < list.size(); i++) {
+//            arr[i] = list.get(i);
+//        }
+//        return Arrays.toString(arr);
+        return list.toString();
     }
 
 //    삭제되는 원소를 돌려주기(맨 앞에 있는 원소)
     public int removeResult() {
         return list.remove(0);
+    }
+
+//    계산 결과 기록이 비었는지 체크하는 메서드
+    public boolean isEmpty() {
+        return list.isEmpty();
     }
 
     public int calculate(int a, int b, char operator) {

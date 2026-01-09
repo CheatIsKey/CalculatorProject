@@ -2,10 +2,7 @@ package com.example;
 
 import com.example.calculator.Calculator;
 
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -40,7 +37,7 @@ public class Main {
 
             try {
                 result = calculator.calculate(a, b, operator);
-                Calculator.setList(result);
+                calculator.setList(result);
                 System.out.println("결과: " + result);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -54,7 +51,7 @@ public class Main {
 //                 TODO:
 //                  컬렉션에 아무것도 없는 경우, 안내 메시지 출력하고
 //                  값이 있는 경우, 결과 반환하기
-                if (calculator.getList() == null) {
+                if (calculator.isEmpty()) {
                     System.out.println("현재 저장된 계산 결과가 없습니다.");
                 } else {
                     int removed = calculator.removeResult();
