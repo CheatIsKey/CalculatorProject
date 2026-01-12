@@ -20,7 +20,7 @@ public class Calculator {
 //      컬렉션 또한 앞에 접근 제어자를 붙일 수 있다!
     private List<Integer> list = new ArrayList<>();
 
-    public void setList(int result) {
+    public void addResult(int result) {
         list.add(result);
     }
 

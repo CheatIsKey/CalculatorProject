@@ -37,7 +37,7 @@ public class Main {
 
             try {
                 result = calculator.calculate(a, b, operator);
-                calculator.setList(result);
+                calculator.addResult(result);
                 System.out.println("결과: " + result);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
