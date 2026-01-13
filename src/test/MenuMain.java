@@ -1,13 +1,10 @@
-package com.example;
+package test;
 
-import com.example.calculator.Calculator;
 import com.example.calculator.InputMenu;
 
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
-import static com.example.calculator.InputMenu.*;
 
 public class MenuMain {
     public static void main(String[] args) {

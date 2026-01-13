@@ -62,6 +62,7 @@ public class Main {
         } while (!input.equalsIgnoreCase("exit"));
 
         System.out.println(calculator.getList());
+        scan.close();
         System.out.println("계산기를 종료합니다.");
     }
 
