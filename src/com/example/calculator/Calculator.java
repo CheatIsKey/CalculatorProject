@@ -1,5 +1,4 @@
 package com.example.calculator;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ public class Calculator {
 //        this.operator = operator;
 //    }
 
-//    TODO:
+    //    TODO:
 //      List<Integer> list = new ArrayList<>();
 //      컬렉션 또한 앞에 접근 제어자를 붙일 수 있다!
     private List<Integer> list = new ArrayList<>();
@@ -35,12 +34,12 @@ public class Calculator {
         return list.toString();
     }
 
-//    삭제되는 원소를 돌려주기(맨 앞에 있는 원소)
+    //    삭제되는 원소를 돌려주기(맨 앞에 있는 원소)
     public int removeResult() {
         return list.remove(0);
     }
 
-//    계산 결과 기록이 비었는지 체크하는 메서드
+    //    계산 결과 기록이 비었는지 체크하는 메서드
     public boolean isEmpty() {
         return list.isEmpty();
     }
@@ -52,21 +51,16 @@ public class Calculator {
 
         int result = 0;
 
-        switch (operator) {
-            case '+':
-                result = a + b;
-                break;
-            case '-':
-                result = a - b;
-                break;
-            case '*':
-                result = a * b;
-                break;
-            case '/':
-                result = a / b;
-                break;
-            default:
-                throw new IllegalArgumentException("잘못된 연산자가 입력되었습니다.");
+        try {
+            result = switch (Operator.findOperator(operator)) {
+                case PLUS -> a + b;
+                case MINUS -> a - b;
+                case MULTIPLY -> a * b;
+                case DIVIDE -> a / b;
+                default -> throw new IllegalArgumentException("잘못된 연산자가 입력되었습니다.");
+            };
+        } catch (IllegalArgumentException e) {
+            e.getMessage();
         }
 
 //        list.add(result);

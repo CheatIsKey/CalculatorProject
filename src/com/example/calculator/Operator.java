@@ -1,4 +1,4 @@
-package test;
+package com.example.calculator;
 
 import java.util.Arrays;
 
@@ -12,12 +12,12 @@ public enum Operator {
         this.operator = operator;
     }
 
-    private final char operator;
+    private char operator;
 
     public static Operator findOperator(char operator) {
         return Arrays.stream(Operator.values())
-                .filter(x -> x.operator == operator)
+                .filter(op -> op.operator == operator)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("지원하지 않는 연산자가 입력되었습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("지원하지 않는 연산자입니다."));
     }
 }
