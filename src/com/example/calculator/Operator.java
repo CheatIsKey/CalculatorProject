@@ -13,7 +13,7 @@ public enum Operator {
         this.operator = operator;
     }
 
-    private char operator;
+    private final char operator;
 
     public static Optional<Operator> findOperator(char operator) {
         return Arrays.stream(Operator.values())
