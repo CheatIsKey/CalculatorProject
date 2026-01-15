@@ -2,7 +2,9 @@ package com.example;
 
 import com.example.calculator.Calculator;
 import com.example.calculator.InputMenu;
+import com.example.calculator.Operator;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -127,15 +129,17 @@ public class MenuMain {
 
     private static void calculateMode(Scanner scan, Calculator calculator) {
         while (true) {
-            int result = 0;
-            int a = inputOperand(scan, "첫 번째 숫자를 입력하세요: ");
+            double result = 0;
+            double a = inputOperand(scan, "첫 번째 숫자를 입력하세요: ");
             char operator = inputOperator(scan, "사칙연산 기호를 입력하세요: ");
-            int b = inputOperand(scan, "두 번째 숫자를 입력하세요: ");
+            double b = inputOperand(scan, "두 번째 숫자를 입력하세요: ");
 
             try {
                 result = calculator.calculate(a, b, operator);
                 calculator.addResult(result);
                 System.out.println("결과: " + result);
+                System.out.print("현재 입력된 결과보다 큰 계산 결과 목록: ");
+                System.out.println(Arrays.toString(calculator.getGreaterResult(result)));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -148,16 +152,15 @@ public class MenuMain {
         }
     }
 
-    private static int inputOperand(Scanner scan, String msg) {
-        int num = 0;
+    private static double inputOperand(Scanner scan, String msg) {
+        double num = 0;
 
         while (true) {
             System.out.print(msg);
             try {
-                num = scan.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("정수만 입력 가능합니다.");
-                scan.next();
+                num = scan.nextDouble();
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
                 continue;
             }
             break;
@@ -171,11 +174,24 @@ public class MenuMain {
             System.out.print(msg);
             char operator = scan.next().charAt(0);
 
-            if (operator == '+' || operator == '-' || operator == '*' || operator == '/') {
-                return operator;
+//            TODO: 2번 변환할 필요가 없어보이는데, 수정할 방법을 아직 못찾았다.
+            try {
+                return switch (Operator.findOperator(operator).orElseThrow(IllegalArgumentException::new)) {
+                    case PLUS -> '+';
+                    case MINUS -> '-';
+                    case MULTIPLY -> '*';
+                    case DIVIDE -> '/';
+                };
+            } catch (IllegalArgumentException e) {
+                System.out.println("연산자가 잘못 입력되었습니다.");
+                continue;
             }
 
-            System.out.println("연산자가 잘못 입력되었습니다.");
+//            if (operator == '+' || operator == '-' || operator == '*' || operator == '/') {
+//                return operator;
+//            }
+
+//            System.out.println("연산자가 잘못 입력되었습니다.");
         }
     }
 
@@ -191,7 +207,7 @@ public class MenuMain {
         if (calculator.isEmpty()) {
             System.out.println("현재 저장된 계산 결과가 없습니다.");
         } else {
-            int removed = calculator.removeResult();
+            double removed = calculator.removeResult();
             System.out.println("삭제된 원소: " + removed);
             System.out.println("현재 저장된 계산 결과 목록: " + calculator.getList());
         }

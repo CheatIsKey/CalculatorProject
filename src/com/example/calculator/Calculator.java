@@ -1,4 +1,5 @@
 package com.example.calculator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +18,9 @@ public class Calculator {
     //    TODO:
 //      List<Integer> list = new ArrayList<>();
 //      컬렉션 또한 앞에 접근 제어자를 붙일 수 있다!
-    private List<Integer> list = new ArrayList<>();
+    private List<Double> list = new ArrayList<>();
 
-    public void addResult(int result) {
+    public void addResult(double result) {
         list.add(result);
     }
 
@@ -34,8 +35,20 @@ public class Calculator {
         return list.toString();
     }
 
+//    TODO: 입력된 결과보다 값이 더 큰 결과 가져오기
+    public double[] getGreaterResult(double result) {
+        return list.stream()
+                .map(x -> {
+                    if (x == null) throw new IllegalArgumentException("현재 저장된 계산 결과가 없습니다.");
+                    return x;
+                })
+                .filter(x -> x > result)
+                .mapToDouble(Double::doubleValue)
+                .toArray();
+    }
+
     //    삭제되는 원소를 돌려주기(맨 앞에 있는 원소)
-    public int removeResult() {
+    public double removeResult() {
         return list.remove(0);
     }
 
@@ -44,23 +57,25 @@ public class Calculator {
         return list.isEmpty();
     }
 
-    public int calculate(int a, int b, char operator) {
-        if (operator == '/' && b == 0) {
+    public <T extends Number> double calculate(T a, T b, char operator) {
+        double num1 = a.doubleValue();
+        double num2 = b.doubleValue();
+
+        if (operator == '/' && num2 == 0) {
             throw new IllegalArgumentException("나눗셈 연산에서 분모에 0이 입력될 수 없습니다.");
         }
 
-        int result = 0;
+        double result = 0;
 
         try {
-            result = switch (Operator.findOperator(operator)) {
-                case PLUS -> a + b;
-                case MINUS -> a - b;
-                case MULTIPLY -> a * b;
-                case DIVIDE -> a / b;
-                default -> throw new IllegalArgumentException("잘못된 연산자가 입력되었습니다.");
+            result = switch (Operator.findOperator(operator).orElseThrow(IllegalArgumentException::new)) {
+                case PLUS -> num1 + num2;
+                case MINUS -> num1 - num2;
+                case MULTIPLY -> num1 * num2;
+                case DIVIDE -> num1 / num2;
             };
         } catch (IllegalArgumentException e) {
-            e.getMessage();
+            System.out.println("잘못된 연산자가 입력되었습니다.");
         }
 
 //        list.add(result);

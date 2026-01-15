@@ -12,7 +12,7 @@ public class Main {
 
 //        TODO: 최초 1회는 실행되고 그 이후에 반복할지 여부를 판단하기 위해, do-while() 반복문 사용하기
         do {
-            int result = 0;
+            double result = 0;
 
 //            System.out.print("첫 번째 숫자를 입력하세요: ");
 //            int a = scan.nextInt();
@@ -54,7 +54,7 @@ public class Main {
                 if (calculator.isEmpty()) {
                     System.out.println("현재 저장된 계산 결과가 없습니다.");
                 } else {
-                    int removed = calculator.removeResult();
+                    double removed = calculator.removeResult();
                     System.out.println("삭제된 원소: " + removed);
                     System.out.println("현재 저장된 계산 결과 목록: " + calculator.getList());
                 }
