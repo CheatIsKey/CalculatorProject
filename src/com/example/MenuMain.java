@@ -13,7 +13,6 @@ public class MenuMain {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Calculator calculator = new Calculator();
-        String input = "";
 
 //        TODO: 최초 1회는 실행되고 그 이후에 반복할지 여부를 판단하기 위해, do-while() 반복문 사용하기
         do {
