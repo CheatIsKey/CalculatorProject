@@ -1,6 +1,6 @@
-package com.example;
+package prev.example;
 
-import com.example.calculator.Calculator;
+import prev.example.calculator.Calculator;
 
 import java.util.*;
 

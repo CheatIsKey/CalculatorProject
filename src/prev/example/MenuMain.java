@@ -1,8 +1,8 @@
-package com.example;
+package prev.example;
 
-import com.example.calculator.Calculator;
-import com.example.calculator.InputMenu;
-import com.example.calculator.Operator;
+import prev.example.calculator.Calculator;
+import prev.example.calculator.InputMenu;
+import prev.example.calculator.Operator;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
