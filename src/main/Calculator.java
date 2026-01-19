@@ -6,8 +6,7 @@ import main.exception.DivideException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.Operator.DIVIDE;
-import static main.Operator.findOperator;
+import static main.Operator.*;
 
 public class Calculator {
     private static final List<Double> results = new ArrayList<>();
@@ -46,17 +45,8 @@ public class Calculator {
         double num1 = a.doubleValue();
         double num2 = b.doubleValue();
 
-        if (operator == DIVIDE.getOperator() && num2 == 0) {
-            throw new DivideException("나눗셈 연산에서 분모에 0이 입력될 수 없습니다.");
-        }
-
         Operator op = findOperator(operator).orElseThrow(() -> new CalculateException("커스텀 예외 발생"));
-        double result = switch (op) {
-            case PLUS -> num1 + num2;
-            case MINUS -> num1 - num2;
-            case MULTIPLY -> num1 * num2;
-            case DIVIDE -> num1 / num2;
-        };
+        double result = op.apply(num1, num2);
 
         addResult(result);
         return result;

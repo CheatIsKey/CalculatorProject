@@ -1,6 +1,7 @@
 package main;
 
 import main.exception.CalculateException;
+import main.exception.DivideException;
 
 import java.util.Arrays;
 
