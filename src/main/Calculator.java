@@ -1,12 +1,11 @@
 package main;
 
 import main.exception.CalculateException;
-import main.exception.DivideException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static main.Operator.*;
+import static main.Operator.findOperator;
 
 public class Calculator {
     private static final List<Double> results = new ArrayList<>();
